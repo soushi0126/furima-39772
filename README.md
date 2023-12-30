@@ -1,17 +1,16 @@
 # テーブル設計
 
 ## users テーブル
-| Column             | Type     | Options                   |
-| ------------------ | -------- | ------------------------- |
-| nickname           | string   | null: false  unique: true             |
-| email              | string   | null: false, unique: true |
-| password           | string   | null: false               |
-| encrypted_password | string   | null: false               |
-| last_name          | string   | null: false               |
-| fast_name          | string   | null: false               |
-| last_name_kana     | string   | null: false               |
-| fast_name_kana     | string   | null: false               |
-| date_of_birth      | datetime | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| fast_name          | string | null: false               |
+| last_name_kana     | string | null: false               |
+| fast_name_kana     | string | null: false               |
+| date_of_birth      | date   | null: false               |
 
 
 ### Association
@@ -22,7 +21,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | name          | string     | null: false                    |
-| description   | string     | null: false                    |
+| description   | text       | null: false                    |
 | category      | string     | null: false                    |
 | situation     | string     | null: false                    |
 | delivery_load | integer    | null: false                    |
@@ -43,7 +42,7 @@
 
 ### Association
 - has_many :comments
-- has_many :addresses
+- has_one :addresses
 - belongs_to :user
 - belongs_to :item
 
@@ -60,12 +59,12 @@
 ## addresses テーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| post_code      | integer    | null: false                    |
+| post_code      | string     | null: false                    |
 | prefectures    | string     | null: false                    |
 | municipalities | string     | null: false                    |
-| street_address | integer    | null: false                    |
+| street_address | string     | null: false                    |
 | building       | string     |                                |
-| telephone      | integer    | null: false                    |
+| telephone      | string     | null: false                    |
 | purchase       | references | null: false, foreign_key: true |
 
 ### Association
