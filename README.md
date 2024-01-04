@@ -42,7 +42,7 @@
 
 ### Association
 - has_many :comments
-- has_one :addresses
+- has_one :address
 - belongs_to :user
 - belongs_to :item
 
@@ -60,7 +60,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
-| prefectures    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
 | municipalities | string     | null: false                    |
 | street_address | string     | null: false                    |
 | building       | string     |                                |
