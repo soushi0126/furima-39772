@@ -10,6 +10,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
 
+  # アクティブストレージのアソシエーション
+  has_one_attached :image
+
 
   # バリデーション設定
   with_options presence: true do
