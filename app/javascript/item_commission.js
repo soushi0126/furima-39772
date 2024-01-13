@@ -9,3 +9,4 @@ function item_commission (){
 };
 
 window.addEventListener('turbo:load', item_commission)
+window.addEventListener('turbo:render', item_commission)
