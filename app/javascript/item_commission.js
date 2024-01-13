@@ -3,8 +3,8 @@ function item_commission (){
   inputPrice.addEventListener('input', () => {
     const outputCommission = document.getElementById("add-tax-price");
     const outputprofit = document.getElementById("profit");
-    outputCommission.innerHTML = Math.round(inputPrice.value * 0.1)
-    outputprofit.innerHTML = Math.round(inputPrice.value - Math.round(inputPrice.value * 0.1))
+    outputCommission.innerHTML = Math.floor(inputPrice.value * 0.1)
+    outputprofit.innerHTML = Math.floor(inputPrice.value - Math.floor(inputPrice.value * 0.1))
   })
 };
 
