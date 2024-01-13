@@ -102,6 +102,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping day must be other than 1')
       end
+
+      it 'priceは空では出品できない' do
+        @item.price = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it 'priceに半角数字以外が含まれている場合は出品できない' do
+        @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it 'priceは整数でなければ出品できない' do
+        @item.price = "300.1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
+      end
+
+      it 'userが紐ついていないければ出品できない' do 
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
     end
   end
 end
