@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :set_item, only: [:show ] #編集機能追加後:editを追加
+  before_action :authenticate_user!, only: [:new, :show, :edit]
+  before_action :set_item, only: [:show, :edit, :update] 
+  
 
   def index
     @items = Item.order("created_at DESC")
@@ -22,17 +23,19 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # def edit
-  # end
+  def edit
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
 
-  # def update
-  #   item = Item.find(params[:id])
-  #   if item.update(item_params)
-  #     redirect_to item_path
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   # def destroy
   #   item = Item.find(params[:id])
@@ -51,4 +54,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
