@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :purchase_address do
-    post_code               { Faker::Number.leading_zero_number(digits: 3) + '-' +
-                               Faker::Number.leading_zero_number(digits: 4)
-                              }
+    post_code               do
+      Faker::Number.leading_zero_number(digits: 3) + '-' +
+        Faker::Number.leading_zero_number(digits: 4)
+    end
     prefecture_id           { Faker::Number.between(from: 2, to: 48) }
     municipalities          { Faker::Address.city }
     street_address          { Faker::Address.street_address }

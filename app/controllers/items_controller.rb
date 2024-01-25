@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
-  before_action :set_item, only: [:show, :edit, :update, :destroy] 
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :ensure_ownership, only: [:edit, :update, :destroy]
   before_action :prevent_edit_after_purchase, only: [:edit, :update]
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -25,9 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless @item.user_id == current_user.id
-      redirect_to root_path
-    end
+    return if @item.user_id == current_user.id
+
+    redirect_to root_path
   end
 
   def update
@@ -43,7 +43,6 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def item_params
@@ -56,14 +55,14 @@ class ItemsController < ApplicationController
   end
 
   def ensure_ownership
-    unless @item.user_id == current_user.id
-      redirect_to root_path
-    end
+    return if @item.user_id == current_user.id
+
+    redirect_to root_path
   end
 
   def prevent_edit_after_purchase
-    if @item.purchase.present?
-      redirect_to root_path
-    end
+    return unless @item.purchase.present?
+
+    redirect_to root_path
   end
 end

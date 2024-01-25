@@ -30,13 +30,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'post_codeが3桁-4桁でないと購入できない' do
         @purchase_address.post_code = '123-11111'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it 'prefecture_idが1なら購入できない' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@purchase_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it 'municipalitiesが空なら購入できない' do
         @purchase_address.municipalities = ''
@@ -53,20 +53,20 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Telephone can't be blank")
       end
-      it 'telephoneが9桁以下なら購入できない' do 
+      it 'telephoneが9桁以下なら購入できない' do
         @purchase_address.telephone = '11111111'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Telephone is invalid')
       end
       it 'telephoneが12桁以上なら購入できない' do
         @purchase_address.telephone = '090111111112'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Telephone is invalid')
       end
       it 'telephoneが全角数値だと購入できない' do
         @purchase_address.telephone = '０９０１１１１１１１１'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Telephone is invalid')
       end
       it 'userが紐ついていなければ購入できない' do
         @purchase_address.user_id = nil
