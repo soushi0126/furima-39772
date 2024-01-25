@@ -11,7 +11,5 @@ FactoryBot.define do
     telephone               { Faker::Number.leading_zero_number(digits: 11) }
     token                   { Faker::Alphanumeric.alphanumeric(number: 30) }
 
-    association :user
-    association :item
   end
 end
